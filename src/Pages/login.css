@@ -1,0 +1,22 @@
+.form_container{
+    width: 100vw;
+    height: 88vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+.form_container p{
+    font-size: 1rem;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    font-weight: 400;
+    color: rgb(84, 84, 80);
+}
+.sign_up{
+    color: #6F2A1C;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 1rem;
+    font-weight: bolder;
+}

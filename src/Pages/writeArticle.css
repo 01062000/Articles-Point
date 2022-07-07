@@ -1,0 +1,48 @@
+.write_article{
+    padding-top: 4%;
+    /*border: 1px solid black;*/
+}
+.article_form{
+    /*border: 1px solid black;*/
+    width: 100vw;
+    height: 100vh;
+}
+.article_form img{
+    margin: 0 25%;
+    width: 45vw;
+    height: 60vh;
+    object-fit: cover;
+    border-radius: 2.1%;
+}
+.writeFormGroup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4%;
+    width: 95vw;
+    margin: 4% 2%;
+    /*border: 1px solid green;*/
+}
+.title{
+    border: none;
+    font-size: 1.8rem;
+    width: 70vw;
+    letter-spacing: 2px;
+    word-spacing: 3px;
+    /*border: 1px solid green;*/
+}
+.article_text{
+    border: none;
+    font-size: 1.2rem;
+    width: 70vw!important;
+    height: 70vh!important;
+    resize: none;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    font-weight: 400;
+    color: rgb(84, 84, 80);
+    /*border: 1px solid green;*/
+}
+.title:focus, .article_text:focus{
+    outline: none;
+}

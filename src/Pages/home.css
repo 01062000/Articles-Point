@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Smooch&family=Stick+No+Bills:wght@200&display=swap');
+.cover_div{
+    width: 100vw;
+    height: 88vh;
+    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url("../cover.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.cover_div h1{
+    color: #d4f38e;
+    text-transform: capitalize;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    font-family: 'Shadows Into Light', cursive;
+    transform: translateY(-40px);
+    letter-spacing: 5px;
+    word-spacing: 2px;
+}
+.article_button{
+    text-align: center;
+    height: 60px;
+    width: 150px;
+    display: inline-block;
+    padding: 12px, 36px;
+    margin: 10px, 0;
+    color: black;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    word-spacing: 3px;
+    border-radius: 40px;
+    background: linear-gradient(rgba(246, 232, 232, 0.5), rgba(255, 255, 255, 0.5));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .4s ease-in-out;
+}
+.article_button:hover{
+    color: #92886F;
+    background: #0D1219;
+}

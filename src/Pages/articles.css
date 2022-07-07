@@ -1,0 +1,9 @@
+.article_div{
+    margin: 0 2.5%;
+    /*transform: translateX(10px);*/
+    /*border: 1px solid red;*/
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    grid-column-gap: 2rem;
+    grid-row-gap: 3rem;
+}
