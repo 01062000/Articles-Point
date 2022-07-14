@@ -1,3 +1,11 @@
+.edit{
+    margin: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    /*border: 1px solid black;*/
+    height: 6vh;
+}
 .article_side{
     width: 100%;
     /*border: 1px solid green;*/

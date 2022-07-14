@@ -9,11 +9,15 @@ import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
-import PersonIcon from "@mui/icons-material/Person";
 import LoginIcon from '@mui/icons-material/Login';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate} from "react-router-dom";
+
+import axios from "axios";
 
 function Login() {
+
+  let navigate = useNavigate();
+
   const [name, setName] = useState("");
   const handleUsername = (e) => {
     setName((name) => e.target.value);
@@ -29,17 +33,36 @@ function Login() {
     setRole(e.target.value);
   };
 
-  const [userData, setUserData] = useState([{}]);
+  let data = {
+    username : name,
+    password : password
+  }
 
-  const userFunction = async () => {
-    const userList = await fetch(``);
-    const userListData = await userList.json();
-    setUserData((data) => userListData);
+  const loginFunction = async () => {
+    const response = await fetch(`http://localhost:8500/authenticate`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {"Content-type": "application/json;charset=UTF-8"}
+    });
+    const loginData = await response.json();
+    console.log(loginData);
+    localStorage.setItem("username", name);
+    localStorage.setItem("token", JSON.stringify(loginData));
+    if(role == "user")
+      localStorage.setItem("isAdmin", false);
+    else
+      localStorage.setItem("isAdmin", true);
   }
 
   function handleSubmit(e){
-    userFunction();
-    console.log(userData);
+    loginFunction();
+    setName("");
+    setpassword("");
+    setRole("");
+    if(role == "admin")
+      navigate(`/profile/${role}/${name}`);
+    else
+      navigate(`/profile/${role}/${name}`);
   }
 
   return (

@@ -16,10 +16,10 @@ import { styled } from "@mui/material";
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
 
 
-function Article() {
+function Article({id, userName, category, content}) {
   let navigate = useNavigate();
   function hoverEvent() {
-    navigate(`/article/gym/001`);
+    navigate(`/article/${category}/${id}`);
   }
 
   return (
@@ -52,7 +52,7 @@ function Article() {
                   R
                 </Avatar>
               }
-              title="Shrimp and Chorizo Paella"
+              title={userName}
               subheader="September 14, 2016"
               className="header"
             />

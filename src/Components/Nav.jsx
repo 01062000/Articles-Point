@@ -4,11 +4,19 @@ import * as React from "react";
 import "./nav.css";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 function Nav() {
+  function handleLogout() {
+    localStorage.removeItem("username");
+    localStorage.removeItem("token");
+    localStorage.removeItem("isAdmin");
+    window.location.assign(`/`);
+  }
+
   return (
     <>
-      <div className="nav_bar" style={{ position: "sticky" }}>
+      <div className="nav_bar">
         <motion.div
           className="logo"
           whileHover={{ scale: 1.1 }}
@@ -29,9 +37,16 @@ function Nav() {
               Trending Articles
             </motion.h5>
           </NavLink>
-          <NavLink to="/login" className="login_button">
-            <h5>Login</h5>
-          </NavLink>
+
+          {localStorage.getItem("username") ? (
+            <h5 className="login_button" onClick={handleLogout}>
+              Log out
+            </h5>
+          ) : (
+            <NavLink to="/login" className="login_button">
+              <h5>Login</h5>
+            </NavLink>
+          )}
         </div>
       </div>
     </>

@@ -7,8 +7,49 @@ import { Button } from "@mui/material";
 
 import Tooltip from "@mui/material/Tooltip";
 
+import axios from "axios";
+
 function WriteArticle() {
   const [photo, setPhoto] = useState(null);
+
+  const [articleData, setArticleData] = useState({
+    uname: localStorage.getItem("username"),
+    title: "",
+    type: "",
+    content: "",
+  });
+
+  const haldleInput = (event) => {
+    const { name, value } = event.target;
+    setArticleData((previous) => {
+      return {
+        ...previous,
+        [name]: value,
+      };
+    });
+  };
+
+  const accessToken = JSON.parse(localStorage.getItem("token"));
+  const token = accessToken.jwtToken;
+
+  axios.interceptors.request.use(
+    config => {
+      config.headers.Authorization = `Bearer Token` + token;
+      return config;
+    },
+    error => {
+      return Promise.reject(error);
+    }
+  )
+
+  const publishArticle = async () => {
+    console.log(token);
+    console.log(accessToken);
+    //console.log("===========" + localStorage.getItem("token") + "====");
+    const response = await axios.post(`http://localhost:8500/article/postarticle`);
+    const article = await response.json();
+    console.log(article);
+  };
 
   return (
     <>
@@ -48,15 +89,31 @@ function WriteArticle() {
               type="text"
               className="title"
               placeholder="Title"
+              name="title"
+              value={articleData.title}
+              onChange={haldleInput}
               autoFocus={true}
               style={{ marginLeft: 30 }}
             />
-            <Button variant="outlined" sx={{ border: "1px solid #0D1219",  color: "#0D1219",
-            ':hover': {
-                background: "#0D1219",
-                color: "white",
-            }
-        }}>
+            <input
+              type="text"
+              className="title"
+              placeholder="Type"
+              name="type"
+              value={articleData.type}
+              onChange={haldleInput}
+            />
+            <Button
+              variant="outlined"
+              sx={{
+                border: "1px solid #0D1219",
+                color: "#0D1219",
+                ":hover": {
+                  background: "#0D1219",
+                  color: "white",
+                },
+              }}
+              onClick={publishArticle}>
               Publish
             </Button>
           </div>
@@ -65,6 +122,9 @@ function WriteArticle() {
               placeholder="Tell your story..."
               type="text"
               className="article_text"
+              name="content"
+              value={articleData.content}
+              onChange={haldleInput}
               rows={2}
               cols={2}></textarea>
           </div>
