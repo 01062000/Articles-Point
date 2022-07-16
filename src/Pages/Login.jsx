@@ -34,20 +34,20 @@ function Login() {
   };
 
   let data = {
-    username : name,
+    userName : name,
     password : password
   }
 
   const loginFunction = async () => {
-    const response = await fetch(`http://localhost:8500/authenticate`, {
+    const response = await fetch(`http://localhost:9090/login`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {"Content-type": "application/json;charset=UTF-8"}
     });
-    const loginData = await response.json();
+    const loginData = await response.text();
     console.log(loginData);
     localStorage.setItem("username", name);
-    localStorage.setItem("token", JSON.stringify(loginData));
+    localStorage.setItem("token", loginData);
     if(role == "user")
       localStorage.setItem("isAdmin", false);
     else
@@ -59,10 +59,10 @@ function Login() {
     setName("");
     setpassword("");
     setRole("");
-    if(role == "admin")
+    /*if(role == "admin")
       navigate(`/profile/${role}/${name}`);
     else
-      navigate(`/profile/${role}/${name}`);
+      navigate(`/profile/${role}/${name}`);*/
   }
 
   return (
@@ -109,7 +109,7 @@ function Login() {
             color: "black",
             background: "white",
             width: 350,
-            height: 50,
+            height: 55,
             borderRadius: 50,
             border: "1px solid black",
             ":hover": {

@@ -13,11 +13,9 @@ function Register() {
 
   const [data, setData] = useState({
     userName: "",
-    name: "",
     email: "",
     phone: "",
     password: "",
-    role: "user"
   });
 
   const InputEvent = (event) => {
@@ -31,7 +29,7 @@ function Register() {
   };
 
   const handleSubmit = async () => {
-    const response = await fetch(`http://localhost:8500/adduser`, {
+    const response = await fetch(`http://localhost:9090/user/adduser`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {"Content-type": "application/json;charset=UTF-8"}
@@ -49,16 +47,6 @@ function Register() {
           label="Username"
           name="userName"
           value={data.userName}
-          onChange={InputEvent}
-          sx={{ width: 350 }}
-          variant="standard"
-        />
-
-        <TextField
-          id="standard-basic"
-          label="Name"
-          name="name"
-          value={data.name}
           onChange={InputEvent}
           sx={{ width: 350 }}
           variant="standard"

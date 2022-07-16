@@ -44,4 +44,5 @@
 .article_button:hover{
     color: #92886F;
     background: #0D1219;
+    border: 1px solid white;
 }

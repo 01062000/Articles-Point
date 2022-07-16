@@ -8,6 +8,7 @@ import { Button } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
 
 import axios from "axios";
+import { useEffect } from "react";
 
 function WriteArticle() {
   const [photo, setPhoto] = useState(null);
@@ -29,27 +30,50 @@ function WriteArticle() {
     });
   };
 
-  const accessToken = JSON.parse(localStorage.getItem("token"));
-  const token = accessToken.jwtToken;
-
-  axios.interceptors.request.use(
+  /*axios.interceptors.request.use(
     config => {
-      config.headers.Authorization = `Bearer Token` + token;
+      config.headers.Authorization = `Bearer ` + token;
       return config;
     },
     error => {
       return Promise.reject(error);
     }
-  )
+  )*/
+
+  const [loginUser, setLoginUser] = useState({});
+  const username = localStorage.getItem("username");
+  const token = localStorage.getItem("token");
+
+  const getLoginUserData = async () => {
+    try{
+    const res = await fetch(`http://localhost:9090/getbyusername/${username}`, {
+      headers: {
+        "Authorization" : `Bearer ` + token
+      }
+    })
+    const userData = res.json();
+    setLoginUser(userData);
+    console.log(loginUser);
+    }catch(err){
+      console.log(err);
+    }
+  }
 
   const publishArticle = async () => {
     console.log(token);
-    console.log(accessToken);
     //console.log("===========" + localStorage.getItem("token") + "====");
-    const response = await axios.post(`http://localhost:8500/article/postarticle`);
+    const response = await axios.post(`http://localhost:9090/article/postarticle`, {}, {
+      headers: {
+        "Authorization" : `Bearer ${token}`
+      }
+    });
     const article = await response.json();
     console.log(article);
   };
+
+  useEffect(() => {
+    //getLoginUserData();
+  }, []);
 
   return (
     <>

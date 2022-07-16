@@ -17,7 +17,7 @@
     font-size: 2rem;
 }
 .navLinks{
-    width: 40vw;
+    width: 50vw;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -25,7 +25,7 @@
 }
 .article_link{
     height: 50px;
-    width: 180px;
+    width: 190px;
     display: inline-block;
     padding: 12px, 36px;
     margin: 10px, 0;
@@ -40,6 +40,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+.article_link > h5{
+    font-weight: 500;
 }
 /*.article_link:hover{
    border-bottom: 2px solid #0D1219;

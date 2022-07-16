@@ -30,7 +30,7 @@ function Profile() {
         withCredentials: true,
         credentials: "include",
         headers: {
-          Authorization: "Bearer Token" + accessToken.jwtToken,
+          Authorization: `Bearer ${accessToken.jwtToken}`,
         },
       }
     );
@@ -47,7 +47,7 @@ function Profile() {
   const getUserArticles = async () => {};
 
   useEffect(() => {
-    getUserData();
+    //getUserData();
     if (localStorage.getItem("isAdmin") === true) getAllUserInApp();
     else getUserArticles();
   }, [param.username]);

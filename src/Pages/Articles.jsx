@@ -30,7 +30,7 @@ function Articles() {
   };
 
   useEffect(() => {
-    getTrending();
+    //getTrending();
   }, [param.category]);
 
   return (
